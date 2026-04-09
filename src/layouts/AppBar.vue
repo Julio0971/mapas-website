@@ -1,35 +1,82 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+import { useDisplay } from 'vuetify'
 
-const router = useRouter()
+const { mobile } = useDisplay()
+
+const drawer = ref(false)
+const options = ref([
+    {
+        value: '#home',
+        title: 'Inicio'
+    },
+    {
+        value: '#ligart',
+        title: 'LIGART'
+    },
+    {
+        value: '#projects',
+        title: 'Proyectos'
+    },
+    {
+        value: '#sig',
+        title: 'SIG LIGART'
+    },
+    {
+        value: '#events',
+        title: 'Eventos'
+    },
+    {
+        value: '#gallery',
+        title: 'Galería'
+    },
+    {
+        value: '#blog',
+        title: 'Publicaciones'
+    },
+    {
+        value: '#team',
+        title: 'Equipo'
+    },
+    {
+        value: '#footer',
+        title: 'Contacto'
+    },
+])
 </script>
 
 <template>
-    <v-app-bar flat color="primary">
+    <v-app-bar flat color="primary" class="py-1">
+        <v-spacer v-if="mobile == false" />
+        
         <v-app-bar-title>
-            LIGART ITOAX
+            <v-img
+                :width="125"
+                aspect-ratio="16/9"
+                src="/img/logo_blanco.png"
+            />
         </v-app-bar-title>
 
-        <template #append>
-            <v-menu>
-                <template #activator="{ props }">
-                    <v-btn size="small" v-bind="props" icon="fas fa-user" />
-                </template>
+        <v-btn
+            variant="text"
+            v-text="option.title"
+            v-if="mobile == false"
+            v-for="option in options"
+        />
 
-                <v-list>
-                    <v-list-item value="profile" @click="router.push({ name: 'profile' })">
-                        <v-list-item-title>
-                            Perfil
-                        </v-list-item-title>
-                    </v-list-item>
+        <v-spacer v-if="mobile == false" />
 
-                    <v-list-item value="logout">
-                        <v-list-item-title>
-                            Cerrar sesión
-                        </v-list-item-title>
-                    </v-list-item>
-                </v-list>
-            </v-menu>
+        <template #append v-if="mobile">
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
         </template>
     </v-app-bar>
+
+    <v-navigation-drawer
+        temporary
+        color="primary"
+        v-model="drawer"
+        :location="mobile ? 'bottom' : undefined"
+    >
+        <v-list :items="options" />
+    </v-navigation-drawer>
 </template>

@@ -1,5 +1,8 @@
+<script setup lang="ts">
+import HomeLogos from '../components/HomeLogos.vue'
+
+</script>
+
 <template>
-    <p>
-        sasd
-    </p>
+    <HomeLogos />
 </template>
