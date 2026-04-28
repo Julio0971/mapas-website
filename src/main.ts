@@ -3,6 +3,9 @@ import { createApp } from 'vue'
 import { router } from './router'
 import { vuetify } from './plugins/vuetify'
 
+// AOS
+import 'aos/dist/aos.css'
+
 // App
 const app = createApp(App)
 

@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import AOS from 'aos'
+import { onMounted } from 'vue'
+
+onMounted(() => AOS.init())
+</script>
+
 <template>
     <RouterView v-slot="{ Component }">
         <Transition name="fade" mode="out-in">

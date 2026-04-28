@@ -1,36 +1,36 @@
 <template>
-    <v-container>
+    <v-container class="py-0">
         <v-row justify="center">
-            <v-col align-self="center" cols="2">
+            <v-col align-self="center" cols="3" lg="2" data-aos="fade-up" data-aos-delay="100">
                 <v-img
-                    :width="125"
+                    :width="80"
                     class="mx-auto"
                     aspect-ratio="16/9"
                     src="/img/logo_ligart1.jpg"
                 />
             </v-col>
 
-            <v-col align-self="center" cols="2">
+            <v-col align-self="center" cols="3" lg="2" data-aos="fade-up" data-aos-delay="150">
                 <v-img
-                    :width="200"
+                    :width="192"
                     class="mx-auto"
                     src="/img/sep.png"
                     aspect-ratio="16/9"
                 />
             </v-col>
 
-            <v-col align-self="center" cols="2">
+            <v-col align-self="center" cols="3" lg="2" data-aos="fade-up" data-aos-delay="200">
                 <v-img
-                    :width="200"
+                    :width="160"
                     class="mx-auto"
                     aspect-ratio="16/9"
                     src="/img/tecnm.png"
                 />
             </v-col>
             
-            <v-col align-self="center" cols="2">
+            <v-col align-self="center" cols="3" lg="2" data-aos="fade-up" data-aos-delay="250">
                 <v-img
-                    :width="125"
+                    :width="80"
                     class="mx-auto"
                     src="/img/ito.png"
                     aspect-ratio="16/9"

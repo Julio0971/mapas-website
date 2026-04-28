@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Logos from './Logos.vue'
 import AppBar from './AppBar.vue'
 </script>
 
@@ -8,6 +9,8 @@ import AppBar from './AppBar.vue'
             <AppBar />
 
             <v-main>
+                <Logos />
+
                 <RouterView v-slot="{ Component }">
                     <Transition name="fade" mode="out-in">
                         <component :is="Component" />

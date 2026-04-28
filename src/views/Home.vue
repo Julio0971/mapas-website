@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import HomeLogos from '../components/HomeLogos.vue'
+import HomeCarousel from '../components/Home/Carousel.vue'
 
 </script>
 
 <template>
-    <HomeLogos />
+    <HomeCarousel />
 </template>
