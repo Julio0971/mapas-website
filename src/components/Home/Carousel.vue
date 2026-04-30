@@ -2,7 +2,7 @@
     <v-carousel height="660" hide-delimiters :show-arrows="false" cycle>
         <v-carousel-item src="/img/mapa4.jpg" cover draggable>
             <div class="d-flex fill-height justify-center align-center">
-                <div class="text-center">
+                <div class="text-center" data-aos="fade-zoom-in" data-aos-delay="400">
                     <div class="text-display-large text-white carousel-title">
                         Laboratorio de análisis regional y territorial
                     </div>
@@ -16,7 +16,7 @@
         
         <v-carousel-item src="/img/mapa8.jpg" cover draggable>
             <div class="d-flex fill-height justify-center align-center">
-                <div class="text-center">
+                <div class="text-center" data-aos="fade-zoom-in" data-aos-delay="400">
                     <div class="text-display-large text-white carousel-title">
                         Sistema de información geográfica
                     </div>

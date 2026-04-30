@@ -24,8 +24,8 @@ export const vuetify = createVuetify({
             dark: {
                 dark: true,
                 colors: {
+                    info: '#007bff',
                     primary: '#611232',
-                    // info: '#3C4F76',
                     // error: '#A22C29',
                     // success: '#7AC74F',
                     // surface: '#32292F',
@@ -35,6 +35,7 @@ export const vuetify = createVuetify({
             light: {
                 dark: false,
                 colors: {
+                    info: '#007bff',
                     primary: '#611232',
                     // info: '#3C4F76',
                     // error: '#A22C29',
