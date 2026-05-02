@@ -5,18 +5,16 @@ import AppBar from './AppBar.vue'
 
 <template>
     <v-app>
-        <v-layout>
-            <AppBar />
+        <AppBar />
 
-            <v-main>
-                <Logos />
-
-                <RouterView v-slot="{ Component }">
-                    <Transition name="fade" mode="out-in">
-                        <component :is="Component" />
-                    </Transition>
-                </RouterView>
-            </v-main>
-        </v-layout>
+        <Logos />
+        
+        <RouterView v-slot="{ Component }">
+            <Transition name="fade" mode="out-in">
+                <v-main>
+                    <component :is="Component" />
+                </v-main>
+            </Transition>
+        </RouterView>
     </v-app>
 </template>
