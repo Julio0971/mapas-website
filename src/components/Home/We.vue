@@ -3,22 +3,22 @@
         <div class="d-flex align-center justify-center fill-height">
             <v-container class="text-center">
                 <v-row justify="center">
-                    <v-col cols="6">
-                        <h1 class="text-display-large" data-aos="fade-up">
-                            Laboratorio de Información Geográfica, Análisis Regional y Territorial del Instituto Tecnológico de Oaxaca
+                    <v-col cols="8">
+                        <h1 class="font-weight-semibold" data-aos="fade-up" style="font-size: 3rem; line-height: 1.2;">
+                            Laboratorio de información geográfica, análisis regional y territorial del instituto tecnológico de Oaxaca
                         </h1>
                     </v-col>
                 </v-row>
 
-                <v-row>
-                    <v-col cols="4" data-aos="fade-up" data-aos-delay="100">
+                <v-row justify="space-around">
+                    <v-col cols="3" data-aos="fade-up" data-aos-delay="100">
                         <v-icon
                             color="info"
                             icon="fas fa-users"
                             style="font-size: 3rem;"
                         />
 
-                        <h5>
+                        <h5 style="font-size: 1.25rem;" class="font-weight-medium">
                             ¿Quiénes somos?
                         </h5>
 
@@ -32,14 +32,14 @@
                         </p>
                     </v-col>
 
-                    <v-col cols="4" data-aos="fade-up" data-aos-delay="150">
+                    <v-col cols="3" data-aos="fade-up" data-aos-delay="150">
                         <v-icon
                             color="info"
                             icon="fas fa-rocket"
                             style="font-size: 3rem;"
                         />
 
-                        <h5>
+                        <h5 style="font-size: 1.25rem;" class="font-weight-medium">
                             Misión
                         </h5>
 
@@ -52,14 +52,14 @@
                         </p>
                     </v-col>
 
-                    <v-col cols="4" data-aos="fade-up" data-aos-delay="200">
+                    <v-col cols="3" data-aos="fade-up" data-aos-delay="200">
                         <v-icon
                             color="info"
                             icon="fas fa-lightbulb"
                             style="font-size: 3rem;"
                         />
 
-                        <h5>
+                        <h5 style="font-size: 1.25rem;" class="font-weight-medium">
                             Visión
                         </h5>
 

@@ -1,0 +1,6 @@
+@use 'fonts.css';
+@use 'sass:string';
+
+@use 'vuetify/settings' with (
+    $body-font-family: string.unquote('"Poppins", sans-serif'),
+);

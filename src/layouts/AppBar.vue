@@ -58,6 +58,7 @@ const options = ref([
         </v-app-bar-title>
 
         <v-btn
+            size="large"
             variant="text"
             v-text="option.title"
             v-if="mobile == false"

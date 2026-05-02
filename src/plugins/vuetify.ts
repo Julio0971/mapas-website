@@ -1,7 +1,5 @@
 import { createVuetify } from 'vuetify'
 import { en, es } from 'vuetify/locale'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
 import { aliases, fa } from 'vuetify/iconsets/fa'
 
 import 'vuetify/styles'
@@ -9,8 +7,6 @@ import '../assets/styles.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 
 export const vuetify = createVuetify({
-    components,
-    directives,
     icons: {
         defaultSet: 'fa',
         aliases,
