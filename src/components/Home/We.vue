@@ -1,5 +1,5 @@
 <template>
-    <v-img src="/img/worldmap-light.svg" cover height="1056" class="top-margin" image-class="image-background">
+    <v-img src="/img/worldmap-light.svg" cover min-height="1056" class="top-margin" image-class="image-background">
         <div class="d-flex align-center justify-center fill-height">
             <v-container class="text-center">
                 <v-row justify="center">
@@ -11,7 +11,7 @@
                 </v-row>
 
                 <v-row justify="space-around">
-                    <v-col cols="3" data-aos="fade-up" data-aos-delay="100">
+                    <v-col cols="12" lg="3" data-aos="fade-up" data-aos-delay="100">
                         <v-icon
                             color="info"
                             icon="fas fa-users"
@@ -32,7 +32,7 @@
                         </p>
                     </v-col>
 
-                    <v-col cols="3" data-aos="fade-up" data-aos-delay="150">
+                    <v-col cols="12" lg="3" data-aos="fade-up" data-aos-delay="150">
                         <v-icon
                             color="info"
                             icon="fas fa-rocket"
@@ -52,7 +52,7 @@
                         </p>
                     </v-col>
 
-                    <v-col cols="3" data-aos="fade-up" data-aos-delay="200">
+                    <v-col cols="12" lg="3" data-aos="fade-up" data-aos-delay="200">
                         <v-icon
                             color="info"
                             icon="fas fa-lightbulb"
