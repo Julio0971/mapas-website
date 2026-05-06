@@ -22,10 +22,10 @@ export const vuetify = createVuetify({
                 colors: {
                     info: '#007bff',
                     primary: '#611232',
+                    background: '#080713',
                     // error: '#A22C29',
                     // success: '#7AC74F',
                     // surface: '#32292F',
-                    // background: '#A4A5AE',
                 }
             },
             light: {

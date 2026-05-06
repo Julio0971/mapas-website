@@ -115,7 +115,7 @@ const items_filtered = computed(() => items.value.filter(i => i.type == filter.v
                             link
                             variant="flat"
                             :href="item.href == '#!' ? undefined : item.href",
-                            :class="isHovering ? ' bg-primary cursor-pointer' : 'bg-primary'"
+                            :class="isHovering ? 'bg-primary cursor-pointer' : 'bg-primary'"
                         >
                             <v-img
                                 :src="`/img/${ item.image }`"
