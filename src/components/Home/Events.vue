@@ -24,7 +24,7 @@ const items = ref([
 </script>
 
 <template>
-    <div class="bg-background">
+    <div class="bg-background mb-10">
         <v-container>
             <v-row>
                 <v-col cols="12">
@@ -49,7 +49,7 @@ const items = ref([
                         <v-card
                             link
                             variant="flat"
-                            class=" bg-background rounded-md"
+                            class=" bg-surface rounded-lg"
                             :class="isHovering ? 'cursor-pointer' : ''"
                         >
                             <v-img :src="`/img/${ item.image }`" />

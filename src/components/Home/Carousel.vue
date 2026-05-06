@@ -7,7 +7,7 @@
                         Laboratorio de análisis regional y territorial
                     </div>
     
-                    <v-btn size="x-large">
+                    <v-btn size="x-large" color="bg-background">
                         ¿Qué es LIGART?
                     </v-btn>
                 </div>
@@ -21,7 +21,7 @@
                         Sistema de información geográfica
                     </div>
     
-                    <v-btn size="x-large">
+                    <v-btn size="x-large" color="bg-background">
                         ¿Qué es LIGART?
                     </v-btn>
                 </div>

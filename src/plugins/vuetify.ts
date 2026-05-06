@@ -22,7 +22,8 @@ export const vuetify = createVuetify({
                 colors: {
                     info: '#007bff',
                     primary: '#611232',
-                    background: '#080713',
+                    surface: '#FFFFFF',
+                    secondary: '#6354FF'
                     // error: '#A22C29',
                     // success: '#7AC74F',
                     // surface: '#32292F',
@@ -33,6 +34,8 @@ export const vuetify = createVuetify({
                 colors: {
                     info: '#007bff',
                     primary: '#611232',
+                    surface: '#080713',
+                    secondary: '#6354FF'
                     // info: '#3C4F76',
                     // error: '#A22C29',
                     // success: '#7AC74F',
