@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Logos from './Logos.vue'
 import AppBar from './AppBar.vue'
+import Footer from './Footer.vue';
 </script>
 
 <template>
@@ -16,5 +17,7 @@ import AppBar from './AppBar.vue'
                 </v-main>
             </Transition>
         </RouterView>
+
+        <Footer />
     </v-app>
 </template>

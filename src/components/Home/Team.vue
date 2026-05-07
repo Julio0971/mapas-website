@@ -66,10 +66,10 @@ const items = ref([
         />
     </svg> -->
 
-    <div class="bg-background">
+    <div class="bg-background mb-16">
         <v-container>
             <v-row>
-                <v-col v-for="item in items">
+                <v-col v-for="item in items" data-aos="fade-up">
                     <v-card variant="flat" class="bg-background text-center">
                         <v-img class="rounded-xl mb-4" :src="`/img/${ item.image }`" />
                         <v-card-title v-text="item.name" class="font-weight-medium text-secondary" style="font-size: 1.25rem;" />
