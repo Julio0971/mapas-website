@@ -114,20 +114,19 @@ const items_filtered = computed(() => items.value.filter(i => i.type == filter.v
                         <v-card
                             link
                             variant="flat"
-                            :href="item.href == '#!' ? undefined : item.href",
+                            :href="item.href == '#!' ? undefined : item.href"
                             :class="isHovering ? 'bg-primary cursor-pointer' : 'bg-primary'"
                         >
                             <v-img
-                                :src="`/img/${ item.image }`"
                                 class="rounded-xl"
+                                :src="`/img/${ item.image }`"
                             />
                         </v-card>
                     </v-hover>
                     
                     <p
                         v-text="item.title"
-                        style="font-size: 1.25rem;"
-                        class="font-weight-medium mb-1"
+                        class="font-weight-medium mb-1 font-size-small-custom"
                     />
 
                     <p

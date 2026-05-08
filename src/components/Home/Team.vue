@@ -72,7 +72,7 @@ const items = ref([
                 <v-col v-for="item in items" data-aos="fade-up">
                     <v-card variant="flat" class="bg-background text-center">
                         <v-img class="rounded-xl mb-4" :src="`/img/${ item.image }`" />
-                        <v-card-title v-text="item.name" class="font-weight-medium text-secondary" style="font-size: 1.25rem;" />
+                        <v-card-title v-text="item.name" class="font-weight-medium text-secondary font-size-small-custom" />
                         <v-card-subtitle v-text="item.role" class="font-weight-medium" />
                         <v-card-text v-text="item.text" class="text-body-large" />
                     </v-card>
@@ -81,19 +81,3 @@ const items = ref([
         </v-container>
     </div>
 </template>
-
-<style>
-.parallax {
-    /* The image used */
-    background-image: url("/img/1.jpg");
-
-    /* Set a specific height */
-    height: 216px;
-
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-</style>

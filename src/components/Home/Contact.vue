@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import mapboxgl from 'mapbox-gl'
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-const items = ref([
+const items = [
     {
         title: 'Puedes llamarnos',
         text: 'Nuestro equipo está disponible para atender tus dudas y brindarte la información que necesites sobre los proyectos y actividades del LIGART-ITOAX.',
@@ -23,7 +23,7 @@ const items = ref([
         icon: 'location-dot',
         contact: '10:00 am - 8:00 pm'
     },
-])
+]
 
 onMounted(() => {
     mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN
@@ -55,7 +55,7 @@ onMounted(() => {
                 Contáctanos
             </h1>
 
-            <p class="font-weight-light" style="font-size: 1.25rem;">
+            <p class="font-weight-light font-size-small-custom">
                 En el LIGART-ITOAX estamos abiertos a la colaboración, la investigación y el intercambio de ideas. Si deseas más información sobre nuestros proyectos, participar en actividades académicas o establecer vínculos institucionales, no dudes en comunicarte con nosotros a través de los medios disponibles.
             </p>
         </v-container>
@@ -72,8 +72,7 @@ onMounted(() => {
                 >
                     <h5
                         v-text="item.title"
-                        style="font-size: 1.25rem;"
-                        class="font-weight-medium mb-0"
+                        class="font-weight-medium mb-0 font-size-small-custom"
                     />
                     
                     <p
@@ -115,7 +114,7 @@ onMounted(() => {
                                 <div class="text-body-large mb-2" v-text="'Nombre completo'" />
 
                                 <v-text-field
-                                 hide-details
+                                    hide-details
                                     variant="outlined"
                                     density="comfortable"
                                     placeholder="Ejemplo: Julio Mendoza"
@@ -126,7 +125,7 @@ onMounted(() => {
                                 <div class="text-body-large mb-2" v-text="'Correo'" />
 
                                 <v-text-field
-                                 hide-details
+                                    hide-details
                                     variant="outlined"
                                     density="comfortable"
                                     placeholder="Ejemplo: correo@gmail.com"
@@ -137,7 +136,7 @@ onMounted(() => {
                                 <div class="text-body-large mb-2" v-text="'Institución o empresa'" />
 
                                 <v-text-field
-                                 hide-details
+                                    hide-details
                                     variant="outlined"
                                     density="comfortable"
                                     placeholder="Ejemplo: INEGI"
@@ -148,7 +147,7 @@ onMounted(() => {
                                 <div class="text-body-large mb-2" v-text="'Mensaje'" />
 
                                 <v-text-field
-                                 hide-details
+                                    hide-details
                                     variant="outlined"
                                     density="comfortable"
                                     placeholder="Ejemplo: Hola que tal buena tarde..."
@@ -177,9 +176,3 @@ onMounted(() => {
         </v-container>
     </div>
 </template>
-
-<style>
-.mapboxgl-popup-content {
-    padding: 0;
-}
-</style>

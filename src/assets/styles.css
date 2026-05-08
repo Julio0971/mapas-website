@@ -10,18 +10,45 @@ html {
     overflow-y: auto;
 }
 
-.v-label {
-    white-space: wrap;
-}
-
 .v-card-title {
     white-space: wrap;
 }
 
-.v-data-table-header__content {
-    font-weight: bold;
-}
-
 .carousel-title {
     font-size: 88px;    
+}
+
+.font-size-small-custom {
+    font-size: 1.25rem;
+}
+
+.font-size-small-custom {
+    font-size: 1.25rem;
+}
+
+.font-size-large-custom {
+    font-size: 3rem;
+    line-height: 1.2;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url("/img/1.jpg");
+
+    /* Set a specific height */
+    height: 216px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.image-background {
+    opacity: 0.25;
+}
+
+.top-margin {
+    margin-top: 112px;
 }

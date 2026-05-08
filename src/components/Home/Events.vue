@@ -28,11 +28,7 @@ const items = ref([
         <v-container class="my-16">
             <v-row>
                 <v-col cols="12">
-                    <h2
-                        data-aos="fade-right"
-                        class="font-weight-semibold"
-                        style="font-size: 3rem; line-height: 1.2;"
-                    >
+                    <h2 data-aos="fade-right" class="font-weight-semibold font-size-large-custom">
                         Próximos eventos
                     </h2>
                 </v-col>
@@ -60,11 +56,7 @@ const items = ref([
                                     {{ item.date }}
                                 </v-card-subtitle>
                                 
-                                <v-card-title
-                                    v-text="item.title"
-                                    style="font-size: 1.25rem;"
-                                    class="font-weight-medium py-3"
-                                />
+                                <v-card-title v-text="item.title" class="font-weight-medium py-3 font-size-small-custom" />
                             </v-card-item>
 
                             <v-card-text class="text-truncate" v-text="item.text" />
