@@ -72,7 +72,7 @@ const items_filtered = computed(() => items.value.filter(i => i.type == filter.v
 
 <template>
     <div class="bg-primary">
-        <v-container>
+        <v-container class="py-16">
             <v-row justify="space-between" align="center">
                 <v-col cols="12" xl="4">
                     <h3 class="font-weight-semibold" style="font-size: 2.5rem;">

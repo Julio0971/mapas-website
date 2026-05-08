@@ -24,8 +24,8 @@ const items = ref([
 </script>
 
 <template>
-    <div class="bg-background mb-16">
-        <v-container>
+    <div class="bg-background">
+        <v-container class="my-16">
             <v-row>
                 <v-col cols="12">
                     <h2

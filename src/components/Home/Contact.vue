@@ -50,7 +50,7 @@ onMounted(() => {
 
 <template>
     <div class="bg-primary">
-        <v-container>
+        <v-container class="py-16">
             <h1 class="text-display-large font-weight-semibold">
                 Contáctanos
             </h1>
@@ -62,7 +62,7 @@ onMounted(() => {
     </div>
 
     <div class="bg-background">
-        <v-container>
+        <v-container class="my-16">
             <v-row class="mb-10">
                 <v-col
                     md="4"
@@ -92,7 +92,7 @@ onMounted(() => {
             </v-row>
         </v-container>
         
-        <v-container>
+        <v-container class="my-16">
             <v-row>
                 <v-col cols="12">
                     <div id="map" class="rounded-lg w-100" style="height: 350px;" />
@@ -100,7 +100,7 @@ onMounted(() => {
             </v-row>
         </v-container>
         
-        <v-container>
+        <v-container class="my-16">
             <v-row justify="center">
                 <v-col cols="12" md="8">
                     <h1 class="text-display-small font-weight-semibold mb-1">
@@ -156,7 +156,7 @@ onMounted(() => {
                             </v-col>
 
                             <v-col cols="12" md="6">
-                                <p class="text-title-small font-weight-regular" style="color: rgba(22, 20, 47, 0.75);">
+                                <p class="text-title-small font-weight-regular">
                                     Responderemos en aproximadamente 2 dias habiles...
                                 </p>
                             </v-col>
@@ -165,7 +165,6 @@ onMounted(() => {
                                 <v-btn
                                     block
                                     size="x-large"
-                                    variant="outlined"
                                     class="rounded-lg"
                                 >
                                     Enviar mensaje

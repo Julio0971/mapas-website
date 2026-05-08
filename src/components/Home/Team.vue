@@ -66,8 +66,8 @@ const items = ref([
         />
     </svg> -->
 
-    <div class="bg-background mb-16">
-        <v-container>
+    <div class="bg-background">
+        <v-container class="my-16">
             <v-row>
                 <v-col v-for="item in items" data-aos="fade-up">
                     <v-card variant="flat" class="bg-background text-center">

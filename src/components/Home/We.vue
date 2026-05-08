@@ -1,5 +1,5 @@
 <template>
-    <v-img src="/img/worldmap-light.svg" cover min-height="1056" class="top-margin" image-class="image-background">
+    <v-img src="/img/worldmap-light.svg" cover min-height="1056" image-class="image-background">
         <div class="d-flex align-center justify-center fill-height">
             <v-container class="text-center">
                 <v-row justify="center">

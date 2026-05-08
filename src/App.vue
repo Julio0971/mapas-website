@@ -2,9 +2,7 @@
 import AOS from 'aos'
 import { onMounted } from 'vue'
 
-onMounted(() => AOS.init({
-    once: true
-}))
+onMounted(() => AOS.init())
 </script>
 
 <template>
