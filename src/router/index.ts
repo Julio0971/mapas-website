@@ -6,6 +6,7 @@ const history = createWebHashHistory(import.meta.env.BASE_URL)
 const routes = [
     { path: '/', component: () => import('../layouts/Layout.vue'), children: [
         { path: '/', name: 'home', component: () => import('../views/Home.vue') },
+        { path: '/ligart', name: 'ligart', component: () => import('../views/Ligart.vue') },
     ]},
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('../views/NotFound.vue') },
 ]

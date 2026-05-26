@@ -165,6 +165,7 @@ onMounted(() => {
                                     block
                                     size="x-large"
                                     class="rounded-lg"
+                                    variant="outlined"
                                 >
                                     Enviar mensaje
                                 </v-btn>

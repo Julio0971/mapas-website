@@ -7,39 +7,39 @@ const { mobile } = useDisplay()
 const drawer = ref(false)
 const options = ref([
     {
-        value: '#home',
+        url: 'home',
         title: 'Inicio'
     },
     {
-        value: '#ligart',
-        title: 'LIGART'
+        url: 'ligart',
+        title: 'LIGART',
     },
     {
-        value: '#projects',
+        section: '#projects',
         title: 'Proyectos'
     },
     {
-        value: '#sig',
+        section: '#sig',
         title: 'SIG LIGART'
     },
     {
-        value: '#events',
+        section: '#events',
         title: 'Eventos'
     },
     {
-        value: '#gallery',
+        section: '#gallery',
         title: 'Galería'
     },
     {
-        value: '#blog',
+        section: '#blog',
         title: 'Publicaciones'
     },
     {
-        value: '#team',
+        section: '#team',
         title: 'Equipo'
     },
     {
-        value: '#footer',
+        section: '#footer',
         title: 'Contacto'
     },
 ])
@@ -63,6 +63,7 @@ const options = ref([
             v-text="option.title"
             v-if="mobile == false"
             v-for="option in options"
+            :to="option.url ? { name: option.url } : undefined"
         />
 
         <v-spacer v-if="mobile == false" />

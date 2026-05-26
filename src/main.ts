@@ -5,6 +5,7 @@ import { vuetify } from './plugins/vuetify'
 
 // AOS
 import 'aos/dist/aos.css'
+import 'leaflet/dist/leaflet.css'
 
 // App
 const app = createApp(App)
