@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import L from 'leaflet'
 import 'leaflet-easyprint'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
+import type { Project } from '../interfaces'
+import { useAxiosErrors, useAxiosRequest } from '../composables'
+import type { AxiosError } from 'axios'
+
+const loading = ref(true)
+const projects = ref([] as Project[])
 
 const setMap = async () => {
     const osm = L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=pvxCaDtZ8y4b6JOS2z7p', {
@@ -150,15 +156,77 @@ const setMap = async () => {
     }
 }
 
-onMounted(() => setMap())
+const getItems = async () => {
+    loading.value = true
+
+    try {
+        const response = await useAxiosRequest('get', '/projects/get-all-projects')
+
+        projects.value = response as Project[]
+    } catch (error) {
+        useAxiosErrors(error as AxiosError)
+    } finally {
+        loading.value = false
+    }
+}
+
+onMounted(() => {
+    getItems()
+    setMap()
+})
 </script>
 
 <template>
-    <div id="map" />
+
+    <div class="bg-background">
+        <v-container fluid>
+            <v-row>
+                <v-col cols="12" sm="2">
+                    <Transition name="fade" mode="out-in">
+                        <v-skeleton-loader
+                            v-if="loading"
+                            color="background"
+                            type="list-item-three-line"
+                        />
+                        
+                        <v-list bg-color="background" v-else>
+                            <v-list-group v-for="project in projects">
+                                <template #activator="{ props }">
+                                    <v-list-item
+                                        v-bind="props"
+                                        :value="project.id"
+                                        :title="`${ project.title } [${ project.layers.length }]`"
+                                    />
+                                </template>
+    
+                                <v-list-item v-for="layer in project.layers">
+                                    <template #prepend>
+                                        <v-list-item-action>
+                                            <v-switch
+                                                inset
+                                                color="info"
+                                                hide-details
+                                                size="x-small"
+                                                :label="layer.title"
+                                            />
+                                        </v-list-item-action>
+                                    </template>
+                                </v-list-item>
+                            </v-list-group>
+                        </v-list>
+                    </Transition>
+                </v-col>
+                
+                <v-col cols="12" sm="10">
+                    <div id="map" />
+                </v-col>
+            </v-row>
+        </v-container>
+    </div>
 </template>
 
 <style>
 #map {
-    height: calc(100vh - 330px);
+    height: calc(100vh - 280px);
 }
 </style>

@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import Logos from './Logos.vue'
 import AppBar from './AppBar.vue'
-import Footer from './Footer.vue';
+import Footer from './Footer.vue'
+import SnackBar from './SnackBar.vue'
 </script>
 
 <template>
     <v-app>
+        <SnackBar />
+
         <AppBar />
 
         <Logos />
