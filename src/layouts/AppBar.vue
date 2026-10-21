@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useDisplay } from 'vuetify'
+import { useSectionStore } from '../store'
+import { useDisplay, useGoTo } from 'vuetify'
+import { useRoute, useRouter } from 'vue-router'
+
+const goTo = useGoTo()
+const route = useRoute()
+const router = useRouter()
+const sections_store = useSectionStore()
 
 const { mobile } = useDisplay()
 
@@ -8,10 +15,11 @@ const drawer = ref(false)
 const options = ref([
     {
         url: 'home',
+        section: 'home',
         title: 'Inicio'
     },
     {
-        url: 'ligart',
+        section: '#ligart',
         title: 'LIGART',
     },
     {
@@ -19,7 +27,7 @@ const options = ref([
         title: 'Proyectos'
     },
     {
-        section: '#sig',
+        url: 'sig-ligart',
         title: 'SIG LIGART'
     },
     {
@@ -43,6 +51,20 @@ const options = ref([
         title: 'Contacto'
     },
 ])
+
+const goToViewSection = (option: { section?: string, url?: string }) => {
+    if (option.url && option.section == undefined) {
+        router.push({ name: option.url })
+    } else if (option.section && route.name != 'home') {
+        sections_store.section = option.section
+        router.push({ name: 'home' })
+    } else if (option.section && route.name == 'home') {
+        goTo(option.section, {
+            duration: 500,
+            offset: -175,
+        })
+    }
+}
 </script>
 
 <template>
@@ -63,7 +85,7 @@ const options = ref([
             v-text="option.title"
             v-if="mobile == false"
             v-for="option in options"
-            :to="option.url ? { name: option.url } : undefined"
+            @click="goToViewSection(option)"
         />
 
         <v-spacer v-if="mobile == false" />

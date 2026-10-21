@@ -71,7 +71,7 @@ const items_filtered = computed(() => items.value.filter(i => i.type == filter.v
 </script>
 
 <template>
-    <div class="bg-primary">
+    <div class="bg-primary" id="projects">
         <v-container class="py-16">
             <v-row justify="space-between" align="center">
                 <v-col cols="12" xl="4">

@@ -49,7 +49,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="bg-primary">
+    <div class="bg-primary" id="footer">
         <v-container class="py-16">
             <h1 class="text-display-large font-weight-semibold">
                 Contáctanos

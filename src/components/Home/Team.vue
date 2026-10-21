@@ -30,9 +30,9 @@ const items = ref([
 </script>
 
 <template>
-    <v-img class="parallax mb-10" gradient="to top right, rgba(8,7,19,0.7), rgba(8,7,19,0.7)">
+    <v-img class="parallax mb-10" gradient="to top right, rgba(8,7,19,0.7), rgba(8,7,19,0.7)" id="team">
         <v-container class="text-white">
-            <h1 class="text-display-large font-weight-semibold mb-0">
+            <h1 class="text-display-large font-weight-semibold mb-0 team-title">
                 Conoce a nuestro equipo.
             </h1>
     

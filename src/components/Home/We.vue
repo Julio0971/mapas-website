@@ -21,6 +21,7 @@ const items = [
 <template>
     <v-img
         cover
+        id="ligart"
         min-height="1056"
         src="/img/worldmap-light.svg"
         image-class="image-background"

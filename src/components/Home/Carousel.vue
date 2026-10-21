@@ -14,6 +14,7 @@ const items = [
 <template>
     <v-carousel
         cycle
+        id="home"
         height="660"
         hide-delimiters
         :show-arrows="false"
