@@ -2,65 +2,59 @@
 import L from 'leaflet'
 import 'leaflet-easyprint'
 import { onMounted, ref } from 'vue'
-import type { Project } from '../interfaces'
-import { useAxiosErrors, useAxiosRequest } from '../composables'
 import type { AxiosError } from 'axios'
+import type { Layer, Project } from '../interfaces'
+import { useAxiosErrors, useAxiosRequest, useHandleMultipleRequests } from '../composables'
 
+// Variables generales
 const loading = ref(true)
 const projects = ref([] as Project[])
+const overlays = ref({} as L.Control.LayersObject)
+const layers_selected = ref([] as { layer_id: number, geojson: L.GeoJSON }[])
 
-const setMap = async () => {
-    const osm = L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=pvxCaDtZ8y4b6JOS2z7p', {
-        maxZoom: 19,
-        attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy;MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy;OpenStreetMap contributors</a>'
-    })
+// Variable de mapa
+let map = {} as L.Map
 
-    const satellite = L.tileLayer('https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=pvxCaDtZ8y4b6JOS2z7p', {
-        maxZoom: 19,
-        attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy;MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy;OpenStreetMap contributors</a>',
-    })
+// Capas base
+const osm = L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=pvxCaDtZ8y4b6JOS2z7p', {
+    maxZoom: 19,
+    attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy;MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy;OpenStreetMap contributors</a>'
+})
 
-    const bases = {
-        'OSM': osm,
-        'Satelital': satellite
-    }
+const satellite = L.tileLayer('https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=pvxCaDtZ8y4b6JOS2z7p', {
+    maxZoom: 19,
+    attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy;MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy;OpenStreetMap contributors</a>',
+})
 
+// Inicializar mapa con cosas básicas
+const setMap = () => {
     L.Marker.prototype.options.icon = L.icon({
         iconUrl: '/img/marker.png',
         iconSize: [30, 30]
     })
 
-    const map = L.map('map', {
+    map = L.map('map', {
         layers: [osm]
     }).setView([23.6260333, -102.5375005], 6)
-
-    let response = await fetch('/src/assets/js/states.json');
     
-    const states = await response.json();
+    L.control.scale().addTo(map)
+}
 
-    response = await fetch('/src/assets/js/municipalities.json');
-
-    const municipalities = await response.json();
-    
-    response = await fetch('/src/assets/js/localities.json');
-
-    const localities = await response.json();
-
-    const overlays = {
-        'Estados': L.geoJson(states).addTo(map),
-        'Municipios': L.geoJson(municipalities).addTo(map),
-        'Localidades': L.geoJson(localities).addTo(map),
+// Setear capas de mapa
+const setMapLayers = () => {
+    const bases = {
+        'OSM': osm,
+        'Satelital': satellite
     }
 
-    L.control.scale().addTo(map)
-    L.control.layers(bases, overlays, { collapsed: false }).addTo(map)
+    L.control.layers(bases, overlays.value, { collapsed: false }).addTo(map)
 
     // Cuadro con botones de registro e inicio de sesión
     const info_box = L.control.attribution({
         position: 'bottomright'
     });
 
-    info_box.onAdd = function() {
+    info_box.onAdd = function () {
         const div = L.DomUtil.create('div')
         
         div.innerHTML = `
@@ -156,7 +150,36 @@ const setMap = async () => {
     }
 }
 
-const getItems = async () => {
+const getBasisLayers = async () => {
+    loading.value = true
+    
+    setMap()
+
+    try {
+        const response = await useAxiosRequest('get', '/layers/get-basis-layers')
+        const basis_layers = response.data as Layer[]
+        const urls = basis_layers.map(basis_layer => `/layers/${ basis_layer.id }`)
+        const overlays_array = await useHandleMultipleRequests(urls)
+        const o = basis_layers.map((bl, i) => {
+            const array = []
+
+            array.push(bl.title)
+            array.push(L.geoJSON(overlays_array[i].data).addTo(map))
+
+            return array
+        })
+
+        overlays.value = Object.fromEntries(o);
+
+        setMapLayers()
+    } catch (error) {
+        useAxiosErrors(error as AxiosError)
+    } finally {
+        loading.value = false
+    }
+}
+
+const getProjects = async () => {
     loading.value = true
 
     try {
@@ -170,14 +193,29 @@ const getItems = async () => {
     }
 }
 
+const toggleLayer = async (layer: Layer) => {
+    const index = layers_selected.value.findIndex(ps => ps.layer_id == layer.id)
+
+    if (index == -1) {
+        const data = await useAxiosRequest('get', `/layers/${ layer.id }`)
+        
+        layers_selected.value.push({
+            layer_id: layer.id,
+            geojson: L.geoJson(data).addTo(map)
+        })
+    } else {
+        layers_selected.value[index].geojson.remove()
+        layers_selected.value = layers_selected.value.filter(ls => ls.layer_id != layer.id)
+    }
+}
+
 onMounted(() => {
-    getItems()
-    setMap()
+    getProjects()
+    getBasisLayers()
 })
 </script>
 
 <template>
-
     <div class="bg-background">
         <v-container fluid>
             <v-row>
@@ -208,6 +246,7 @@ onMounted(() => {
                                                 hide-details
                                                 size="x-small"
                                                 :label="layer.title"
+                                                @change="toggleLayer(layer)"
                                             />
                                         </v-list-item-action>
                                     </template>
