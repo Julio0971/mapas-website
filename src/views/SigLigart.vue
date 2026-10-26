@@ -4,7 +4,7 @@ import 'leaflet-easyprint'
 import { onMounted, ref } from 'vue'
 import type { AxiosError } from 'axios'
 import type { Layer, Project } from '../interfaces'
-import { useAxiosErrors, useAxiosRequest, useHandleMultipleRequests } from '../composables'
+import { getMaxTempColor, getMinTempColor, useAxiosErrors, useAxiosRequest, useHandleMultipleRequests } from '../composables'
 
 // Variables generales
 const loading = ref(true)
@@ -201,11 +201,45 @@ const toggleLayer = async (layer: Layer) => {
         
         layers_selected.value.push({
             layer_id: layer.id,
-            geojson: L.geoJson(data).addTo(map)
+            geojson: L.geoJson(data, { onEachFeature, style }).addTo(map)
         })
     } else {
         layers_selected.value[index].geojson.remove()
         layers_selected.value = layers_selected.value.filter(ls => ls.layer_id != layer.id)
+    }
+}
+
+const style = (feature: any) => {
+    if (feature && feature.properties && feature.properties.tmin_rango) {
+        return {
+            fillColor: getMinTempColor(feature.properties.tmin_rango),
+            fillOpacity: 0.7,
+            color: 'transparent'
+        }
+    } else if (feature && feature.properties && feature.properties.tmax_rango) {
+        return {
+            fillColor: getMaxTempColor(feature.properties.tmax_rango),
+            fillOpacity: 0.7,
+            color: 'transparent'
+        }
+    }
+
+    return {
+        fillColor: '#FFF',
+        weight: 1,
+        color: 'black'
+    }
+}
+
+const onEachFeature = (feature: any, layer: L.Layer) => {
+    if (feature.properties) {
+        let x = ''
+
+        Object.entries(feature.properties).map((item: any) => {
+            x += `${ item[0] }: ${ item[1] }<br>`
+        })
+
+        layer.bindPopup(x)
     }
 }
 
