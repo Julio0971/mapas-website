@@ -56,3 +56,15 @@ html {
 .team-title {
     font-size: clamp(2rem, 5vw + 1rem, 3.5625rem);
 }
+
+.display-6 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.h6 {
+    color: #16142f80;
+    font-weight: 500;
+    font-size: 1rem;
+}

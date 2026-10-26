@@ -13,7 +13,7 @@ const items = ref([
         image: 'drone1.jpeg',
         title: 'Manejo de drones',
         subtitle: 'Lorem ipsum dolor sit amet.',
-        href: '#!',
+        href: 'portfolio-single-classic',
         type: '2'
     },
     {
@@ -114,7 +114,7 @@ const items_filtered = computed(() => items.value.filter(i => i.type == filter.v
                         <v-card
                             link
                             variant="flat"
-                            :href="item.href == '#!' ? undefined : item.href"
+                            :to="item.href == '#!' ? undefined : item.href"
                             :class="isHovering ? 'bg-primary cursor-pointer' : 'bg-primary'"
                         >
                             <v-img
