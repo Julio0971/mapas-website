@@ -13,5 +13,6 @@ export interface Layer {
     file: string
     original_filename: string
     is_basis: 1 | 0
+    is_public: 1 | 0
     projects: Project[]
 }
