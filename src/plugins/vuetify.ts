@@ -22,9 +22,8 @@ export const vuetify = createVuetify({
                 colors: {
                     info: '#007bff',
                     primary: '#611232',
-                    surface: '#FFFFFF',
                     secondary: '#6354FF',
-                    background: '#080713'
+                    background: '#080713',
                 }
             },
             light: {
@@ -32,8 +31,8 @@ export const vuetify = createVuetify({
                 colors: {
                     info: '#007bff',
                     primary: '#611232',
-                    surface: '#080713',
-                    secondary: '#6354FF'
+                    secondary: '#6354FF',
+                    background: '#FFFFFF',
                 }
             },
         },

@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import L from 'leaflet'
-import { onMounted, ref } from 'vue'
 import type { AxiosError } from 'axios'
+import { onMounted, ref, watch } from 'vue'
 import type { Layer, Project } from '../interfaces'
 import { getMaxTempColor, getMinTempColor, useAxiosErrors, useAxiosRequest, useHandleMultipleRequests } from '../composables'
 
 const projects = ref([] as Project[])
 const loading = ref('getting-projects')
-const all_layers = ref([] as { id: number, is_public: 1 | 0, file: File | null, geojson: null | L.GeoJSON }[])
+const layers_selected = ref([] as number[])
+const all_layers = ref([] as { id: number, title: string, is_basis: 1 | 0, file: File | null, geojson: null | L.GeoJSON }[])
 
 // Variable de mapa
 let map = {} as L.Map
@@ -49,9 +50,6 @@ const getProjects = async () => {
         const response = await useAxiosRequest('get', '/projects/get-all-projects')
         
         projects.value = response.data as Project[]
-
-        console.log(projects.value);
-        
     } catch (error) {
         useAxiosErrors(error as AxiosError)
     } finally {
@@ -67,22 +65,25 @@ const getAllLayers = async () => {
     try {
         const response = await useAxiosRequest('get', '/layers/get-all-layers')
         const layers = response.data as Layer[]
-        const urls = layers.map(l => `/layers/${ l.id }`)
+        const urls = layers.filter(l => l.is_public == 1 || l.is_basis == 1).map(l => `/layers/${ l.id }`)
         const responses = await useHandleMultipleRequests(urls)
 
-        all_layers.value = layers.map((l, i) => {
+        all_layers.value = layers.filter(l => l.is_public == 1 || l.is_basis == 1).map((l, i) => {
             const id = l.id
             const geojson = null
-            const is_public = l.is_public
+            const title = l.title
+            const is_basis = l.is_basis
             const file = responses[i] ? responses[i].data : null
 
-            return { id, is_public, file, geojson }
+            return { id, title, is_basis, file, geojson }
         })
 
-        all_layers.value.filter(al => al.is_public == 1).map(al => ({
+        all_layers.value = all_layers.value.map(al => ({
             ...al,
-            geojson: L.geoJSON(al.file as never, { onEachFeature, style }).addTo(map)
+            geojson: al.is_basis == 1 ? L.geoJSON(al.file as never, { onEachFeature, style }).addTo(map) : null
         }))
+
+        layers_selected.value = all_layers.value.filter(al => al.is_basis == 1).map(al => al.id)
     } catch (error) {
         useAxiosErrors(error as AxiosError)
     } finally {
@@ -124,6 +125,15 @@ const onEachFeature = (feature: any, layer: L.Layer) => {
     }
 }
 
+watch(() => layers_selected.value, ls => all_layers.value.forEach(al => {
+    if (ls.includes(al.id) && al.geojson == null) {
+        al.geojson = L.geoJSON(al.file as never, { onEachFeature, style }).addTo(map)
+    } else if (!ls.includes(al.id) && al.geojson != null) {
+        al.geojson.remove()
+        al.geojson = null
+    }
+}))
+
 onMounted(() => {
     getProjects()
     getAllLayers()
@@ -133,7 +143,47 @@ onMounted(() => {
 <template>
     <v-card-text>
         <v-row>
-            <v-col cols="12" md="10">
+            <v-col cols="12" md="2">
+                <Transition name="fade" mode="out-in">
+                    <v-skeleton-loader type="card" v-if="loading == 'getting-projects'" />
+
+                    <v-list select-strategy="leaf" v-model:selected="layers_selected" v-else class="bg-background">
+                        <template v-for="project in projects.filter(p => p.layers.filter(l => l.is_public == 1).length > 0)">
+                            <v-list-subheader class="text-label-large" :title="project.title" />
+    
+                            <v-list-item
+                                :value="layer.id"
+                                :title="layer.title"
+                                v-for="layer in project.layers.filter(l => l.is_public == 1)"
+                                :key="`${ project.title } - ${ layer.title }`"
+                            >
+                                <template #prepend="{ isSelected, select }">
+                                    <v-list-item-action>
+                                        <v-checkbox-btn :model-value="isSelected" @update:model-value="select" />
+                                    </v-list-item-action>
+                                </template>
+                            </v-list-item>
+                        </template>
+    
+                        <v-list-subheader class="text-label-large" title="Capas base" />
+    
+                        <v-list-item
+                            :value="layer.id"
+                            :key="layer.title"
+                            :title="layer.title"
+                            v-for="layer in all_layers.filter(al => al.is_basis == 1)"
+                        >
+                            <template #prepend="{ isSelected, select }">
+                                <v-list-item-action>
+                                    <v-checkbox-btn :model-value="isSelected" @update:model-value="select" />
+                                </v-list-item-action>
+                            </template>
+                        </v-list-item>
+                    </v-list>
+                </Transition>
+            </v-col>
+
+            <v-col cols="12" md="8">
                 <v-skeleton-loader type="card" v-if="loading == 'getting-all-layers'" />
 
                 <div id="map" />
