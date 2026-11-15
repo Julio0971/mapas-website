@@ -41,6 +41,78 @@ const setMap = () => {
 
     L.control.scale().addTo(map)
     L.control.layers(bases, {}, { collapsed: false }).addTo(map)
+
+    // Cuadro con botones de registro e inicio de sesión
+    const info_box = L.control.attribution({
+        position: 'bottomright'
+    });
+
+    info_box.onAdd = function () {
+        const div = L.DomUtil.create('div')
+        
+        div.innerHTML = `
+            <div class="v-container v-locale--is-ltr aos-init aos-animate" data-aos="fade-right">
+                <div class="v-row justify--end v-row--density-default justify-end">
+                    <div class="v-col v-col--cols-md-6 v-col--cols-12">
+                        <div
+                            role="alert"
+                            style="background-color: rgb(239, 238, 255);"
+                            class="v-alert v-theme--light v-theme-on-light v-alert--density-default v-alert--variant-flat px-3 py-2 rounded-lg"
+                        >
+                            <span class="v-alert__underlay"></span>
+
+                            <div class="v-alert__content">
+                                <p class="text-center">
+                                    Si usted conoce otra informacion geográfica que pueda complementar este mapa, le pedimos que llene el formulario.
+                                </p>
+
+                                <hr
+                                    role="separator"
+                                    style="border-style: solid;"
+                                    aria-orientation="horizontal"
+                                    class="v-divider v-theme--light mb-5"
+                                >
+                                
+                                <div class="v-row align--center justify--space-around v-row--density-default align-center justify-space-around">
+                                    <div class="v-col v-col--cols-md-6 v-col--cols-12 mb-2">
+                                        <a
+                                            target="_blank"
+                                            href="https://visor.mysysint.site/#/login-request"
+                                            class="v-btn v-btn--block v-btn--elevated v-theme--light bg-white v-btn--density-default v-btn--size-default v-btn--variant-elevated"
+                                        >
+                                            <span class="v-btn__overlay"></span>
+                                            <span class="v-btn__underlay"></span>
+                                            <span class="v-btn__content" data-no-activator="">
+                                                Registrate
+                                            </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="v-col v-col--cols-md-6 v-col--cols-12 mb-2">
+                                        <a
+                                            target="_blank"
+                                            href="https://visor.mysysint.site"
+                                            class="v-btn v-btn--block v-btn--elevated v-theme--light bg-white v-btn--density-default v-btn--size-default v-btn--variant-elevated"
+                                        >
+                                            <span class="v-btn__overlay"></span>
+                                            <span class="v-btn__underlay"></span>
+                                            <span class="v-btn__content" data-no-activator="">
+                                                Inicia sesión
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `
+        
+        return div
+    }
+
+    info_box.addTo(map)
 }
 
 const getProjects = async () => {
