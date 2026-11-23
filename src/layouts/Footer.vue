@@ -1,9 +1,17 @@
 <script setup lang="ts">
-const icons = [
-    'facebook',
-    'twitter',
-    'linkedin',
-    'instagram',
+const data = [
+    {
+        icon: 'fa-brands fa-facebook',
+        link: 'https://www.facebook.com/ligart.itoax.9'
+    },
+    {
+        icon: 'fa-brands fa-youtube',
+        link: 'https://www.youtube.com/@ligartitoax512/featured'
+    },
+    {
+        icon: 'fa-solid fa-envelope',
+        link: 'mailto:itoligart@gmail.com'
+    }
 ]
 </script>
 
@@ -14,11 +22,13 @@ const icons = [
                 <v-row justify="space-between" align="center">
                     <v-col cols="12" md="6">
                         <v-btn
-                            :key="icon"
                             size="small"
+                            :key="d.icon"
+                            :href="d.link"
+                            :icon="d.icon"
                             variant="plain"
-                            v-for="icon in icons"
-                            :icon="`fa-brands fa-${ icon }`"
+                            target="_blank"
+                            v-for="d in data"
                         />
                     </v-col>
                     
