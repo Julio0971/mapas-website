@@ -4,47 +4,22 @@ import { onMounted } from 'vue'
 
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-const items = [
-    {
-        title: 'Puedes llamarnos',
-        text: 'Nuestro equipo está disponible para atender tus dudas y brindarte la información que necesites sobre los proyectos y actividades del LIGART-ITOAX.',
-        icon: 'mobile-screen',
-        contact: '+01 1234-567-890'
-    },
-    {
-        title: 'Envíanos un correo',
-        text: 'Si deseas un contacto más formal o compartir documentos, escríbenos y con gusto responderemos a la brevedad.',
-        icon: 'envelope',
-        contact: 'rakesh.sharma856'
-    },
-    {
-        title: 'Búscanos directamente en la institución',
-        text: 'Visítanos en las instalaciones del Instituto Tecnológico de Oaxaca, donde estaremos encantados de recibirte y mostrarte nuestro trabajo.',
-        icon: 'location-dot',
-        contact: '10:00 am - 8:00 pm'
-    },
-]
-
 onMounted(() => {
-    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN
-
     const map = new mapboxgl.Map({
-        zoom: 9,
+        zoom: 12,
         container: 'map',
-        center: [-96.92, 17.08],
+        scrollZoom: false,
+        center: [-96.7448, 17.07779],
         style: 'mapbox://styles/mapbox/light-v10',
+        accessToken: import.meta.env.VITE_MAPBOX_ACCESS_TOKEN,
     })
 
-    map.scrollZoom.disable()
+    const popup = new mapboxgl.Popup().setHTML('<h3>Instituto Tecnológico de Oaxaca</h3>');
 
     new mapboxgl.Marker({
         color: '#6354ff',
         scale: 1.5
-    }).setLngLat([-96.92, 17.08]).addTo(map);
-
-    // const popup = new mapboxgl.Popup().setHTML('<h3>New York City</h3><p>The most populous city in the United States.</p>');
-
-    // marker.setPopup(popup);
+    }).setLngLat([-96.7448, 17.07779]).setPopup(popup).addTo(map);
 })
 </script>
 
@@ -62,35 +37,6 @@ onMounted(() => {
     </div>
 
     <div class="bg-background">
-        <v-container class="my-16">
-            <v-row class="mb-10">
-                <v-col
-                    md="4"
-                    cols="12"
-                    class="text-center"
-                    v-for="item in items"
-                >
-                    <h5
-                        v-text="item.title"
-                        class="font-weight-medium mb-0 font-size-small-custom"
-                    />
-                    
-                    <p
-                        v-text="item.text"
-                        class="text-title-small font-weight-regular mt-2"
-                    />
-
-                    <v-btn color="white">
-                        <template v-slot:prepend>
-                            <v-icon :icon="`fas fa-${ item.icon }`" size="small" />
-                        </template>
-
-                        {{ item.contact }}
-                    </v-btn>
-                </v-col>
-            </v-row>
-        </v-container>
-        
         <v-container class="my-16">
             <v-row>
                 <v-col cols="12">

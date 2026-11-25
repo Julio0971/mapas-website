@@ -15,12 +15,8 @@ const drawer = ref(false)
 const options = ref([
     {
         url: 'home',
-        section: 'home',
-        title: 'Inicio'
-    },
-    {
         section: '#ligart',
-        title: 'LIGART',
+        title: 'Inicio'
     },
     {
         section: '#projects',
@@ -35,16 +31,8 @@ const options = ref([
         title: 'Eventos'
     },
     {
-        section: '#gallery',
-        title: 'Galería'
-    },
-    {
         section: '#blog',
         title: 'Publicaciones'
-    },
-    {
-        section: '#team',
-        title: 'Equipo'
     },
     {
         section: '#footer',
@@ -70,14 +58,6 @@ const goToViewSection = (option: { section?: string, url?: string }) => {
 <template>
     <v-app-bar flat color="primary" class="py-1">
         <v-spacer v-if="mobile == false" />
-        
-        <v-app-bar-title>
-            <v-img
-                :width="125"
-                aspect-ratio="16/9"
-                src="/img/logo_blanco.png"
-            />
-        </v-app-bar-title>
 
         <v-btn
             size="large"

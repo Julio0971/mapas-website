@@ -77,20 +77,6 @@ const setMap = () => {
                                     <div class="v-col v-col--cols-md-6 v-col--cols-12 mb-2">
                                         <a
                                             target="_blank"
-                                            href="https://visor.mysysint.site/#/login-request"
-                                            class="v-btn v-btn--block v-btn--elevated v-theme--light bg-white v-btn--density-default v-btn--size-default v-btn--variant-elevated"
-                                        >
-                                            <span class="v-btn__overlay"></span>
-                                            <span class="v-btn__underlay"></span>
-                                            <span class="v-btn__content" data-no-activator="">
-                                                Registrate
-                                            </span>
-                                        </a>
-                                    </div>
-
-                                    <div class="v-col v-col--cols-md-6 v-col--cols-12 mb-2">
-                                        <a
-                                            target="_blank"
                                             href="https://visor.mysysint.site"
                                             class="v-btn v-btn--block v-btn--elevated v-theme--light bg-white v-btn--density-default v-btn--size-default v-btn--variant-elevated"
                                         >
