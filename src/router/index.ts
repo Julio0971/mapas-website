@@ -6,8 +6,9 @@ const history = createWebHashHistory(import.meta.env.BASE_URL)
 const routes = [
     { path: '/', component: () => import('../layouts/Layout.vue'), children: [
         { path: '/', name: 'home', component: () => import('../views/Home.vue') },
+        { path: '/project-1', name: 'project-1', component: () => import('../views/Project1.vue') },
+        { path: '/project-2', name: 'project-2', component: () => import('../views/Project2.vue') },
         { path: '/sig-ligart', name: 'sig-ligart', component: () => import('../views/SigLigart.vue') },
-        { path: '/portfolio-single-classic', name: 'portfolio-single-classic', component: () => import('../views/PortfolioSingleClassic.vue') },
     ]},
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('../views/NotFound.vue') },
 ]

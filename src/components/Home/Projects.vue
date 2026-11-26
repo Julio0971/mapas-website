@@ -1,73 +1,18 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 
-const filter = ref('')
-const filters = ref([
-    'Externos',
-    'Investigación',
-    'Posgrado',
-    'Académicos',
-])
 const items = ref([
     {
-        image: 'drone1.jpeg',
-        title: 'Manejo de drones',
-        subtitle: 'Lorem ipsum dolor sit amet.',
-        href: 'portfolio-single-classic',
-        type: '2'
+        image: 'img/project-1.JPEG',
+        title: 'Atlas Huatulco',
+        href: 'project-1',
     },
     {
-        image: 'curso1.jpg',
-        title: 'Curso2',
-        subtitle: 'Lorem ipsum dolor sit amet.',
-        href: '#!',
-        type: '4'
-    },
-    {
-        image: 'curso2.jpg',
-        title: 'Curso3',
-        subtitle: 'Lorem ipsum dolor sit amet.',
-        href: '#!',
-        type: '2'
-    },
-    {
-        image: 'curso2.jpg',
-        title: 'Curso3',
-        subtitle: 'Lorem ipsum dolor sit amet.',
-        href: '#!',
-        type: '2'
-    },
-    {
-        image: 'drone1.jpeg',
-        title: 'Curso4',
-        subtitle: 'Lorem ipsum dolor sit amet.',
-        href: '#!',
-        type: '4'
-    },
-    {
-        image: 'curso1.jpg',
-        title: 'Curso5',
-        subtitle: 'Lorem ipsum dolor sit amet.',
-        href: '#!',
-        type: '2'
-    },
-    {
-        image: 'curso2.jpg',
-        title: 'Curso6',
-        subtitle: 'Lorem ipsum dolor sit amet.',
-        href: '#!',
-        type: '3'
-    },
-    {
-        image: 'curso2.jpg',
-        title: 'Curso6',
-        subtitle: 'Lorem ipsum dolor sit amet.',
-        href: '#!',
-        type: '3'
-    },
+        image: 'img/project-2.jpg',
+        title: 'Libramiento Sur',
+        href: 'project-2',
+    }
 ])
-
-const items_filtered = computed(() => items.value.filter(i => i.type == filter.value || ['', 1].includes(filter.value)))
 </script>
 
 <template>
@@ -79,28 +24,6 @@ const items_filtered = computed(() => items.value.filter(i => i.type == filter.v
                         Nuestros proyectos
                     </h3>
                 </v-col>
-
-                <v-col
-                    xl="6"
-                    cols="12"
-                    class="d-flex justify-end"
-                >
-                    <v-chip-group
-                        filter
-                        mandatory
-                        v-model="filter"
-                    >
-                        <v-chip
-                            disabled
-                            variant="text"
-                            class="opacity-100"
-                        >
-                            Filtrar por:
-                        </v-chip>
-
-                        <v-chip v-for="filter in filters" :text="filter" />
-                    </v-chip-group>
-                </v-col>
             </v-row>
 
             <v-row>
@@ -108,7 +31,7 @@ const items_filtered = computed(() => items.value.filter(i => i.type == filter.v
                     sm="6"
                     lg="3"
                     cols="12"
-                    v-for="item in items_filtered"
+                    v-for="item in items"
                 >
                     <v-hover v-slot="{ isHovering }">
                         <v-card
@@ -119,7 +42,7 @@ const items_filtered = computed(() => items.value.filter(i => i.type == filter.v
                         >
                             <v-img
                                 class="rounded-xl"
-                                :src="`/img/${ item.image }`"
+                                :src="`/${ item.image }`"
                             />
                         </v-card>
                     </v-hover>
@@ -127,11 +50,6 @@ const items_filtered = computed(() => items.value.filter(i => i.type == filter.v
                     <p
                         v-text="item.title"
                         class="font-weight-medium mb-1 font-size-small-custom"
-                    />
-
-                    <p
-                        class="mt-0"
-                        v-text="item.subtitle"
                     />
                 </v-col>
             </v-row>

@@ -44,7 +44,10 @@ const goToViewSection = (option: { section?: string, url?: string }) => {
     if (option.url && option.section == undefined) {
         router.push({ name: option.url })
     } else if (option.section && route.name != 'home') {
-        sections_store.section = option.section
+        if (option.section != '#ligart') {
+            sections_store.section = option.section
+        }
+        
         router.push({ name: 'home' })
     } else if (option.section && route.name == 'home') {
         goTo(option.section, {
