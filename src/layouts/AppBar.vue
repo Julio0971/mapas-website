@@ -31,7 +31,7 @@ const options = ref([
         title: 'Eventos'
     },
     {
-        section: '#blog',
+        section: '#publications',
         title: 'Publicaciones'
     },
     {

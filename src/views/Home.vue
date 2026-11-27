@@ -8,6 +8,7 @@ import HomeEvents from '../components/Home/Events.vue'
 import HomeContact from '../components/Home/Contact.vue'
 import HomeCarousel from '../components/Home/Carousel.vue'
 import HomeProjects from '../components/Home/Projects.vue'
+import HomePublications from '../components/Home/Publications.vue'
 
 const goTo = useGoTo()
 const sections_store = useSectionStore()
@@ -32,6 +33,8 @@ onMounted(async () => {
     <HomeProjects />
 
     <HomeEvents />
+    
+    <HomePublications />
 
     <HomeTeam />
 
