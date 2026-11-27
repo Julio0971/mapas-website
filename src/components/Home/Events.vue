@@ -3,22 +3,54 @@ import { ref } from 'vue'
 
 const items = ref([
     {
-        image: '10.png',
-        date: '12 de Diciembre del 2025',
-        title: 'Presentación del nuevo Sistema de Información Geográfica',
-        text: 'El Instituto Tecnológico de Oaxaca, a través del LIGART-ITOAX, presentó el nuevo Sistema de Información Geográfica diseñado para integrar y analizar datos estadísticos y territoriales del estado. Esta herramienta busca apoyar la investigación académica, la planeación regional y la toma de decisiones estratégicas'
+        title: 'Curso abril-jul 2021',
+        docs: ['02 Presentación del curso.pptx']
     },
     {
-        image: '20.png',
-        date: '06 de Enero del 2026',
-        title: 'Colaboración con CEIEG Oaxaca',
-        text: 'El LIGART-ITOAX inició un convenio de colaboración con el Comité Estatal de Información Estadística y Geográfica de Oaxaca, con el objetivo de fortalecer la generación de datos confiables para la planeación territorial y el desarrollo regional.'
+        title: 'Curso Chetumal 2026',
+        docs: ['Curso en línea.pdf']
     },
     {
-        image: '30.png',
-        date: '29 de Marzo del 2026',
-        title: 'Taller de Mapas Temáticos en QGIS',
-        text: 'Se llevara a cabo un taller de capacitación en el uso de QGIS para la creación de mapas temáticos. La actividad reunira a estudiantes, docentes e investigadores interesados en aplicar tecnologías geoespaciales al análisis territorial de Oaxaca.'
+        title: 'Curso Dron 2025',
+        docs: [
+            'Fotogrametria y drones ITO-2.pdf',
+            'Procesamiento de fotografias-1.pdf'
+        ]
+    },
+    {
+        title: 'Curso Curso Feminismo 2026',
+        docs: [
+            'cartel curso herramientas feministas 2.jpg',
+            'Curso ITO 2026.pdf'
+        ]
+    },
+    {
+        title: 'Curso oct-nov 2025',
+        docs: ['Curso cartografia_SIGs_cartel 2.jpg']
+    },
+    {
+        title: 'Curso sept-oct 2023',
+        docs: ['Curso básico sobre construcción cartográfica (1).pdf']
+    },
+    {
+        title: 'Seminario Procesos contemp de transformación territorial en Oaxaca 2026',
+        docs: [
+            'Cartel PCTTO 2026_.jpg',
+            'Programa Final SPTTO 2026.jpg'
+        ]
+    },
+    {
+        title: 'Seminario Procesos contemporáneos de transformación territorial en Oaxaca 2024',
+        docs: ['programa Seminario 2024.pdf']
+    },
+    {
+        title: 'Seminario Procesos contemporáneos de transformación territorial en Oaxaca 2025',
+        docs: [
+            'Programa Seminario Oaxaca 2025_Página_1.jpg',
+            'Programa Seminario Oaxaca 2025_Página_2.jpg',
+            'Programa Seminario Oaxaca 2025_Página_3.jpg',
+            'Programa Seminario Oaxaca 2025_Página_4.jpg'
+        ]
     },
 ])
 </script>
@@ -36,32 +68,40 @@ const items = ref([
 
             <v-row>
                 <v-col
-                    sm="4"
+                    lg="6"
+                    xl="4"
+                    xxl="3"
                     cols="12"
                     data-aos="fade-up"
                     v-for="item in items"
                 >
-                    <v-hover v-slot="{ isHovering }">
-                        <v-card
-                            link
-                            variant="flat"
-                            class=" bg-surface rounded-lg"
-                            :class="isHovering ? 'cursor-pointer' : ''"
-                        >
-                            <v-img :src="`/img/${ item.image }`" />
+                    <v-card
+                        elevation="2"
+                        variant="flat"
+                        class=" bg-surface rounded-lg h-100"
+                    >
+                        <v-img src="/img/map.jpeg" />
 
-                            <v-card-item class="text-center">
-                                <v-card-subtitle class="text-title-small">
-                                    <v-icon icon="fa-regular fa-calendar" size="small" />
-                                    {{ item.date }}
-                                </v-card-subtitle>
+                        <v-card-item class="text-center">
+                            <v-card-title v-text="item.title" class="font-weight-medium py-3 font-size-small-custom" />
+                        </v-card-item>
+
+                        <v-card-text>
+                            <v-btn
+                                block
+                                variant="flat"
+                                target="_blank"
+                                v-for="doc in item.docs"
+                                :href="`/docs/${ doc }`"
+                            >
+                                <template #prepend>
+                                    <v-icon icon="fas fa-download" />
+                                </template>
                                 
-                                <v-card-title v-text="item.title" class="font-weight-medium py-3 font-size-small-custom" />
-                            </v-card-item>
-
-                            <v-card-text class="text-truncate" v-text="item.text" />
-                        </v-card>
-                    </v-hover>
+                                {{ doc }}
+                            </v-btn>
+                        </v-card-text>
+                    </v-card>
                 </v-col>
             </v-row>
         </v-container>
